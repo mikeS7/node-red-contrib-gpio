@@ -1,6 +1,8 @@
 node-red-contrib-gpio
 ========================
 
+[![Join the chat at https://gitter.im/monteslu/node-red-contrib-gpio](https://badges.gitter.im/monteslu/node-red-contrib-gpio.svg)](https://gitter.im/monteslu/node-red-contrib-gpio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A set of input and output nodes for controlling General Purpose Input and Outputs (GPIOs) though the use of [johnny-five](https://github.com/rwaldron/johnny-five) [I/O Plugins](https://github.com/rwaldron/johnny-five/wiki/IO-Plugins) as well as running johnny-five scripts!
 
 ## Install via NPM
@@ -15,8 +17,16 @@ npm install node-red-contrib-gpio
 ![input output](in_out.png)
 
 ## Also Read and Write to i2c devices
-
 ![i2c](i2c.png)
+
+Node configuration
+* 14 is the length of bytes to read (1 byte = 8 bits)
+* i2c bytes is an array of bytes. You can't use inject node directly because data has to be inside an array.
+```
+msg.payload=[0x00]
+return msg;
+```
+* i2c read and i2c write configure i2c connection. I2c and register are decimal values! parseInt(x, 10) function is used to read values.
 
 ## Now with full Johnny-five support!
 
